@@ -1,0 +1,22 @@
+# Virtual environment
+.venv/
+venv/
+
+# Database credentials
+.env
+.env.*
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Database backups
+*.dump
+*.backup
+
+# VS Code settings
+.vscode/
+
+# Temporary files
+*.tmp
