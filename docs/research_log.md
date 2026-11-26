@@ -119,3 +119,20 @@ Status: Abgeschlossen.
 Schritt 10 – Erstellung einer partitionierten Tabelle
 mit zwölf monatlichen Partitionen und identischem
 Datenbestand für vergleichende Experimente.
+
+### Schritt 16 – Validierungsplan mit realen Daten
+
+**Status:** Abgeschlossen
+
+**Datum:** 26.11.2026
+
+- Auswahl des NYC Yellow Taxi Trip Records-Datensatzes.
+- Definition der relevanten Datenattribute.
+- Planung der Datenaufbereitung und Qualitätskontrolle.
+- Definition der experimentellen Konfigurationen und Evaluationsmetriken.
+- Planung des Vergleichs zwischen synthetischen und realen Daten.
+- Dokumentation möglicher Limitationen.
+
+Der vollständige Validierungsplan befindet sich in `docs/real_data_validation.md`.
+
+Die praktische Validierung erfolgt in einer späteren Projektphase.
