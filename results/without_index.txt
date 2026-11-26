@@ -1,0 +1,19 @@
+Experiment 1 - Ohne Index
+
+Tabelle: transactions_normal
+Datensätze: 1000000
+Bedingung: customer_id = 42
+Gefundene Datensätze: 75
+Scan-Typ: Seq Scan
+
+Warm-up: 466.363 ms
+Lauf 1: 287.187 ms
+Lauf 2: 207.999 ms
+Lauf 3: 150.567 ms
+
+Mittelwert: 215.251 ms
+
+Hinweis:
+Die vollständigen ursprünglichen Ausführungspläne
+wurden nicht gespeichert. Die Messwerte wurden
+manuell dokumentiert.

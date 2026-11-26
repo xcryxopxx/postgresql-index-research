@@ -1,0 +1,16 @@
+Experiment 1 - Mit Index
+
+Tabelle: transactions_normal
+Datensätze: 1000000
+Bedingung: customer_id = 42
+Scan-Typ: Bitmap Heap Scan + Bitmap Index Scan
+
+Warm-up: 1.132 ms
+Lauf 1: 0.295 ms
+Lauf 2: 0.213 ms
+Lauf 3: 0.207 ms
+
+Mittelwert: 0.238333 ms
+
+Hinweis:
+Die Messwerte wurden manuell dokumentiert.

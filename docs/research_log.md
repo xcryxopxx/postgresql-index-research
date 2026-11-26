@@ -47,30 +47,75 @@
   1,002 % (10.020 Datensätze).
 
 ### Schritt 9 – Indexexperimente
-Status: In Bearbeitung.
 
-Ziel:
-Vergleich der Abfrageperformance mit und ohne
-B-Tree-Index bei unterschiedlichen Selektivitäten.
+Status: Abgeschlossen.
 
-## Methodische Entscheidungen
+#### Durchgeführte Arbeiten
 
-- Verwendung synthetischer Daten für kontrollierte
-  und reproduzierbare Experimente.
-- Zunächst eine Million Datensätze.
-- Keine Primärschlüsselindizes im Ausgangszustand.
-- Messung mit EXPLAIN (ANALYZE, BUFFERS).
-- Verwendung identischer Daten für spätere
-  Vergleiche mit partitionierten Tabellen.
+- Ausgangszustand ohne Indizes überprüft.
+- Abfrageperformance ohne Index gemessen.
+- Zwei B-Tree-Indizes erstellt:
+  - idx_normal_customer
+  - idx_normal_created_at
+- Abfrageperformance mit Index gemessen.
+- Sechs unterschiedliche Selektivitätsstufen untersucht.
+- Pro Abfrage ein Warm-up und drei gemessene
+  Wiederholungen durchgeführt.
+- Tatsächliche Selektivitäten bestimmt.
+- Zugriffsmethoden dokumentiert.
+- Speicherbedarf der Indizes gemessen.
+- Vorläufige Ergebnisse interpretiert.
+- Methodische Einschränkungen dokumentiert.
 
-## Abweichungen von der ursprünglichen Planung
+#### Experimentelle Ergebnisse
 
-- Windows statt Linux.
-- PostgreSQL 19.0 statt PostgreSQL 16.
+- Anzahl der Datensätze: 1.000.000
+- Mittlere Ausführungszeit ohne Index: 215.251 ms
+- Mittlere Ausführungszeit mit Index: 0.238333 ms
+- Tatsächliche Selektivität: 0.0075 %
+- Beschleunigungsfaktor: ca. 903.15
+- Reduktion der Ausführungszeit: ca. 99.89 %
 
-## Nächste Schritte
+#### Beobachtete Zugriffsmethoden
 
-- B-Tree-Indizes erstellen.
-- Selektivitätsexperimente durchführen.
-- Partitionierte Tabelle erstellen.
-- Messungen mit Python automatisieren.
+- Bitmap Heap Scan und Bitmap Index Scan bei
+  den getesteten Selektivitätsstufen bis ca. 50 %.
+- Sequential Scan bei 100 % Selektivität.
+- Der genaue Übergangspunkt wurde noch nicht bestimmt.
+
+#### Speicherbedarf
+
+- Tabellengröße (Heap): 150 MB
+- Gesamtgröße der Indizes: 28 MB
+- Gesamtgröße einschließlich Indizes: 179 MB
+- Index auf customer_id: 6960 kB
+- Index auf created_at: 21 MB
+- Relativer Speicherbedarf der Indizes: 18.80 %
+
+#### Methodische Erkenntnisse
+
+- Indizes können bei selektiven Abfragen erhebliche
+  Performancevorteile bieten.
+- Indizes verursachen zusätzlichen Speicherbedarf.
+- Die Ausführungszeit steigt nicht zwangsläufig
+  monoton mit der Selektivität.
+- Cache-Effekte müssen bei weiteren Experimenten
+  berücksichtigt werden.
+- Automatisierte Messungen sind für eine
+  systematische Evaluation erforderlich.
+
+#### Dokumentation
+
+- docs/preliminary_results.md
+- results/without_index.txt
+- results/with_index.txt
+- results/selectivity_tests.txt
+- results/index_sizes.txt
+- sql/03_create_indexes.sql
+- sql/05_test_queries.sql
+
+#### Nächster Schritt
+
+Schritt 10 – Erstellung einer partitionierten Tabelle
+mit zwölf monatlichen Partitionen und identischem
+Datenbestand für vergleichende Experimente.

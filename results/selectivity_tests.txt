@@ -1,0 +1,92 @@
+EXPERIMENT 2 - SELECTIVITY TESTS
+================================
+
+Table: transactions_normal
+Dataset: 1000000 rows
+Configuration: B-Tree indexes
+Measurement: EXPLAIN (ANALYZE, BUFFERS)
+Unit: milliseconds
+
+TEST 1 - 0.01%
+--------------------------------
+Condition: customer_id = 42
+Actual rows: 75
+Actual selectivity: 0.0075%
+Scan: Bitmap Heap Scan + Bitmap Index Scan
+
+Warm-up: 1.132
+Run 1: 0.295
+Run 2: 0.213
+Run 3: 0.207
+Mean: 0.238333
+
+TEST 2 - 1%
+--------------------------------
+Condition: customer_id <= 100
+Actual rows: 10020
+Actual selectivity: 1.0020%
+Scan: Bitmap Heap Scan + Bitmap Index Scan
+
+Warm-up: 397.032
+Run 1: 11.715
+Run 2: 15.017
+Run 3: 16.086
+Mean: 14.272667
+
+TEST 3 - 10%
+--------------------------------
+Condition: customer_id <= 1000
+Actual rows: 99576
+Actual selectivity: 9.9576%
+Scan: Bitmap Heap Scan + Bitmap Index Scan
+
+Warm-up: 442.616
+Run 1: 142.271
+Run 2: 138.972
+Run 3: 248.884
+Mean: 176.709
+
+TEST 4 - 25%
+--------------------------------
+Condition: customer_id <= 2500
+Actual rows: 249457
+Actual selectivity: 24.9457%
+Scan: Bitmap Heap Scan + Bitmap Index Scan
+
+Warm-up: 138.886
+Run 1: 131.506
+Run 2: 143.245
+Run 3: 127.001
+Mean: 133.917333
+
+TEST 5 - 50%
+--------------------------------
+Condition: customer_id <= 5000
+Actual rows: 499521
+Actual selectivity: 49.9521%
+Scan: Bitmap Heap Scan + Bitmap Index Scan
+
+Warm-up: 312.586
+Run 1: 204.121
+Run 2: 335.387
+Run 3: 202.436
+Mean: 247.314667
+
+TEST 6 - 100%
+--------------------------------
+Condition: customer_id <= 10000
+Actual rows: 1000000
+Actual selectivity: 100.0000%
+Scan: Seq Scan
+
+Warm-up: 159.933
+Run 1: 152.174
+Run 2: 151.678
+Run 3: 169.542
+Mean: 157.798
+
+NOTE
+--------------------------------
+The measurements were manually recorded.
+This file contains measurement values and
+observed scan types, not complete execution plans.

@@ -1,0 +1,26 @@
+EXPERIMENT 3 - INDEX STORAGE
+================================
+
+Table: transactions_normal
+Dataset: 1000000 rows
+Index type: B-Tree
+
+QUERY 1 - Relation sizes
+--------------------------------
+table_size: 150 MB
+indexes_size: 28 MB
+total_size: 179 MB
+
+QUERY 2 - Individual index sizes
+--------------------------------
+idx_normal_created_at: 21 MB
+idx_normal_customer: 6960 kB
+
+QUERY 3 - Exact sizes and overhead
+--------------------------------
+table_bytes: 157540352
+indexes_bytes: 29614080
+total_bytes: 187228160
+index_overhead_percent: 18.80%
+
+Note: Query results were manually recorded.
